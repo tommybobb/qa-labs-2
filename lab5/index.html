@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login Form</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username"><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password"><br><br>
+
+    <button onclick="checkLogin()">Login</button>
+
+    <p id="message"></p>
+
+    <script>
+        function checkLogin() {
+            // display an error message 
+            //      if the username's length is less than 2
+            //      if the password's length is less than 8
+            //      else display a success message 
+
+            var username = document.getElementById("username");
+            var password = document.getElementById("password");
+
+            var hasNumber = /\d/.test(password.value);
+
+            console.log(username.value);
+
+            if(username.value.length < 2){
+                alert("Username must be greater than 2 characters");
+                return;
+            }
+
+            if(password.value.length < 8){
+                alert("Passwords must be greater than 8 characters");
+                return;
+            }
+
+            if(hasNumber == false){
+                alert("Passwords must contain a number");
+                return;
+            }
+
+            alert("Logged in!");
+    }
+    </script>
+</body>
+</html>

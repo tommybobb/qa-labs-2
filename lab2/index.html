@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tom Clarke - Lab 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="join-page"><h1>Join the Tech Explorers Club</h1></div>
+    
+    <div class = "form">
+        <label for="full-name">Full Name</label>
+        <input type="text" name="full-name" id="full-name">
+
+        <label for="form-email">Email:</label>
+        <input type="email" name="form-email" id="form-email"">
+
+        <label for="form-age">Age:</label>
+        <input type="number" name="form-age" id="form-age">
+
+        <label for="user-type">User Type:</label>
+        <div class="user-type">
+            <div class="option-wrapper">
+                <label for="user-type-student">
+                    <input type="radio" name="user-type" id="user-type-student">
+                    Student
+                </label>
+            </div>
+
+            <div class="option-wrapper">
+                <label for="user-type-professional">
+                    <input type="radio" name="user-type" id="user-type-professional">
+                    Professional
+                </label>
+            </div>
+
+            <div class="option-wrapper">
+                <input type="radio" name="user-type" id="user-type-hobbyist">
+                <label for="user-type-hobbyist">Hobbyist</label>
+            </div>
+        </div>
+
+        <label for="user-interests">Interests:</label>
+        <div class="user-interests">
+            <div class="option-wrapper">
+                <label for="user-interests-ai">
+                    <input type="checkbox" name="user-interests-ai" id="user-interests-ai">
+                    AI
+                </label>
+            </div>
+
+            <div class="option-wrapper">
+                <label for="user-interests-web">
+                    <input type="checkbox" name="user-interests-web" id="user-interests-web">
+                    Web Development
+                </label>
+            </div>
+
+            <div class="option-wrapper">
+                
+                <label for="user-interests-cyber">
+                    <input type="checkbox" name="user-interests-cyber" id="user-interests-cyber">
+                    Cybersecurity
+                </label>
+            </div>
+        </div>
+
+        <label for="fav-language">Favourite Language:</label>
+        <select name="fav-language" id="fav-language">
+            <option value="python">Python</option>
+            <option value="dotnet">.NET</option>
+            <option value="java">Java</option>
+        </select>
+
+        <label for="join-reason">Why do you want to join?</label>
+        <textarea name="join-reason" id="join-reason" rows="4" cols="50"></textarea>
+
+        <button type="submit">Submit</button>
+
+    </div>
+
+
+
+    <script src="scripts.js"></script>
+</body>
+</html>

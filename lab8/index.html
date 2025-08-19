@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    
+       <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .example {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 300px;
+            padding-bottom: 1rem;
+        }
+
+        .flex-column button {
+            max-width: 6rem;
+        }
+
+        .task-list {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            margin: 20px 0;
+        }
+
+        .task-list th {
+            background-color: #f4f4f4;
+            color: #333;
+            font-weight: bold;
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .task-list td {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+        }
+
+        .task-list tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+    <div class="flex-column">
+        <label for="task-name">
+            Task: 
+            <input type="text" name="task-name" id="task-name">
+        </label>
+
+        <label for="priority"">
+            Priority: 
+            <input type="number" name="priority" id="priority">
+        </label>
+
+        <button onclick="addNewTask()">Add Task</button>
+        <button onclick="addNewTaskWithPrio()">Add Task (Priority)</button>
+
+    </div>
+
+
+
+
+
+    <table class="task-list" >
+        <thead>
+            <th>Task</th>
+            <th>Priority</th>
+            <th>Delete</th>
+        </thead>
+        <tbody id="task-list-body"></tbody>
+
+    </table>
+
+    <script>
+
+        const taskArray = [];
+        const taskInput = document.getElementById("task-name");
+        const priorityInput = document.getElementById("priority");
+
+        var tableRef = document.getElementById("task-list-body");
+
+        function addNewTask(){
+
+            const newTask = {task: task, priority: priority};
+            taskArray.push(newTask);
+
+            tableRef.appendChild(generateTableRow());
+
+        }
+
+        function generateTableRow () {
+
+            const task = taskInput.value;
+            const priority = parseInt(priorityInput.value);
+
+            const newTableRow = document.createElement("tr");
+
+            const taskCell = document.createElement("td");
+            taskCell.textContent = task;
+
+            const priorityCell = document.createElement("td");
+            priorityCell.textContent = priority;
+
+            newTableRow.appendChild(taskCell);
+            newTableRow.appendChild(priorityCell);
+            newTableRow.appendChild(addDeleteCell());
+
+
+            return newTableRow;
+
+        }
+
+        function addDeleteCell(){
+            const taskCell = document.createElement("td");
+            const deleteButton = document.createElement("button");
+
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = deleteRow;
+            taskCell.appendChild(deleteButton);
+
+            return taskCell;
+        }
+
+        function deleteRow(event){
+            const row = event.target.closest('tr');
+
+            row.remove();
+        }
+
+        function addNewTaskWithPrio(){
+
+            const task = taskInput.value;
+            const priority = parseInt(priorityInput.value); 
+            
+            const newTask = {task: task, priority: priority};
+
+            let insertIndex = taskArray.length;
+            for (let i = 0; i < taskArray.length; i++) {
+                if (priority < taskArray[i].priority) {
+                    insertIndex = i;
+                    break;
+                }
+            }
+
+            taskArray.splice(insertIndex, 0, newTask);
+
+            const newTableRow = generateTableRow();
+
+            if (insertIndex >= tableRef.children.length) {
+                tableRef.appendChild(newTableRow);
+            } else {
+                tableRef.insertBefore(newTableRow, tableRef.children[insertIndex]);
+            }
+
+        }
+
+        priorityInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                e.preventDefault();
+                
+                addNewTaskWithPrio();
+            }
+        });
+
+
+    </script>
+</body>
+</html>

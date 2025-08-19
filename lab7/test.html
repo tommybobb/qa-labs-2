@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Practice</title>
+    <style>
+        input, label, button {
+            display: block;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Enter Name and Age</h2>
+
+    <label for="nameInput">Name:</label>
+    <input type="text" id="nameInput" placeholder="Enter name">
+
+    <label for="ageInput">Age:</label>
+    <input type="number" id="ageInput" placeholder="Enter age">
+
+    <button onclick="addEntry()">Add to Array</button>
+    <button onclick="displayEntries()">Show All Entries</button>
+
+    <h3>Stored Entries:</h3>
+    <div id="output"></div>
+
+    <script>
+        const names = [];
+        const ages = [];
+        const profiles = [];
+
+        function addEntry() {
+            const name = document.getElementById("nameInput").value;
+            const age = document.getElementById("ageInput").value;
+
+            profiles.push({name: name, age: age});
+
+        }
+
+        function displayEntries() {
+
+            const outputSpace = document.getElementById("output");
+
+            let stringtext = "";
+
+            for(const profile of profiles){
+                stringtext += "<p> Name: " + profile.name + " - Age: " + profile.age +  "</p>";
+            }
+
+            outputSpace.innerHTML = stringtext;
+
+        }
+    </script>
+</body>
+</html>

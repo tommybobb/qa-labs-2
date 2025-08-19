@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    
+       <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .example {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        /* Method 1: CSS Flexbox */
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 300px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="flex-column">
+        <label for="max-row">
+            Max Rows
+            <input type="number" name="max-row" id="max-row">
+        </label>
+
+        <label for="max-col">
+            Max Cols
+            <input type="number" name="max-col" id="max-col">
+        </label>
+    </div>
+
+
+    <button onclick="multiplicationTable(6,8)">Loop4</button>
+
+
+    <button onclick="getMultiplcationData()">Loop4</button>
+
+    <p id="message"></p>
+
+    <br>
+
+    <table id="multiTable">
+        <tbody></tbody>
+
+    </table>
+
+    <script>
+
+        var tableRef = document.getElementById("multiTable");
+
+
+
+        function multiplicationTable (maxRows, maxCols){
+
+            var tbody = "";
+
+            const rows = maxRows;
+            const cols = maxCols;
+
+            for(i = 1; i <= rows; i++){
+                var row = "<tr>";
+
+                for(k = 1; k <= cols; k++){
+                    row += "<td>" + i * k + "</td>"
+                }
+                
+                row += "</tr>";
+                tbody += row;
+            }
+
+            tableRef.innerHTML =tbody;
+        }
+
+        function getMultiplcationData(){
+
+            const maxRows = document.getElementById("max-row").value;
+            const maxCols = document.getElementById("max-col").value;
+
+
+            const data = generateMultiplicationData(maxRows, maxCols);
+
+            console.log(data);
+        }
+
+        function generateMultiplicationData(maxRows, maxCols) {
+            const data = [];
+
+            for (let i = 1; i <= maxRows; i++) {
+                const row = [];
+
+                for (let k = 1; k <= maxCols; k++) {
+                    row.push(i * k);
+                }
+
+                data.push(row);
+            }
+
+            return data;
+        }
+
+
+    </script>
+</body>
+</html>
